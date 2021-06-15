@@ -61,11 +61,25 @@ function writePassword() {
   return
   }
 
-  var actualPassword = '';
-  var lC = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
-  var uC = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
-  var nu
-  var sp
+  var actualPassword = "";
+  var lC = []
+  if (lowerCase == "Yes") {
+    lC.push("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z");
+  }
+  var uC = []
+  if (upperCase == "Yes") {
+    uC.push("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")
+  }
+  var nu = []
+  if (numeric == "Yes") {
+    nu.push("1", "2", "3", "4", "5", "6", "7", "8", "9", "0")
+  };
+  var sp = [];
+  if (special == "Yes") {
+    sp.push("!", "@", "#", "$", "%", "^", "&", "*", "(", ")")
+  };
+  var newChars = lC.concat(uC, nu, sp);
+  console.log(newChars);
   var chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
   //for loop to randomly generate password
@@ -75,7 +89,7 @@ function writePassword() {
   }
   console.log(actualPassword);
   console.log(actualPassword.length);
-  passwordText = (actualPassword);
+  passwordText.innerHTML = actualPassword
 
   return actualPassword;
   
