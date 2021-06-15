@@ -2,31 +2,81 @@
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
-function writePassword() {
-  // var password = generatePassword();
+// function writePassword() {
+//   // var password = generatePassword();
   var passwordText = document.querySelector("#password");
-  // Setting Password Length
+//   // Setting Password Length
 
+
+//     //Setting included character types
+
+//   var passwordArray = ["a", "b", "c", "A", "B", "C", "1", "2", "3", "!", "@", "#"]
+//   // var lcArray = ["a", "b", "c"]
+//   // var ucArray = ["A", "B", "C"]
+//   // var nArray = ["1", "2", "3"]
+//   // var sArray = ["!", "@", "#"]
+//   console.log(passwordArray)
+
+//   
+//   // if (lowerCase == "Yes") {
+//   //   passwordArray + lcArray
+//   // }
+//   
+//   // if (upperCase == "Yes") {
+//   //   passwordArray + ucArray
+//   // }
+//   
+//   // if (numeric == "Yes") {
+//   //   passwordArray + nArray
+//   // }
+//   var special = window.prompt("Would you like to include special? (Yes or No)")
+//   // if (special == "Yes") {
+//   //   passwordArray + sArray
+//   // }
+//   // passwordText.value = password;
+
+//   
+
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
+//function to create password
+function writePassword() {
+  //user input for password length
   var passwordLength = window.prompt("How long should you password be? (8-128 Characters)")
   if (isNaN(passwordLength) || passwordLength < 8 || passwordLength > 128) {
-    console.log("input not valid");
+    window.alert("Enter valid password");
     return;
   } else {
     console.log(passwordLength)
     console.log("its gucci")
-    //Setting included character types
-  var charactertype = window.prompt("Please type all character types you would like to include. (Lowercase, Uppercase, Numeric, Special)")
-  console.log(charactertype);
-  } if (charactertype == "Lowercase", "Uppercase", "Numeric", "Special") {
-    console.log("s'all goodman");
-  } else {
-    console.log("sus");
-    return;
+  }
+  //lets user pick which characters to include  
+  var lowerCase = window.prompt("Would you like to include lowercase? (Yes or No)")
+  var upperCase = window.prompt("Would you like to include uppercase? (Yes or No)")
+  var numeric = window.prompt("Would you like to include numeric? (Yes or No)")
+  var special = window.prompt("Would you like to include special? (Yes or No)")
+  //Checks to see if at least one character type is selected
+  if ((lowerCase !== "Yes")&&(upperCase !== "Yes")&&(numeric !== "Yes")&&(special !== "Yes")){
+  window.alert("Please select at least one character type.")
+  return
   }
 
-  passwordText.value = password;
+  var actualPassword = '';
+  var lC = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+  var uC = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+  var nu
+  var sp
+  var chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
+  //for loop to randomly generate password
+  for (i=0;i<(passwordLength);i++) {
+    var c = Math.floor(Math.random()*chars.length + 1);
+    actualPassword += chars.charAt(c);
+  }
+  console.log(actualPassword);
+  console.log(actualPassword.length);
+  passwordText = (actualPassword);
+
+  return actualPassword;
+  
 }
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
